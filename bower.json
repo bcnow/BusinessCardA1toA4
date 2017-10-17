@@ -1,0 +1,17 @@
+{
+  "name": "DpaDarbsUpgradeAngular",
+  "authors": [
+    "e.reinicans@yahoo.co.uk <e.reinicans@yahoo.co.uk>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
