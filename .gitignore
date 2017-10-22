@@ -53,6 +53,9 @@ logs
 npm-debug.log
 node_modules/
 
+# bower specific #
+#################
+bower_components/
 
 # Sublime specific #
 ####################
