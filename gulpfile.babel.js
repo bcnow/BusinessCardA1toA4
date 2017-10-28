@@ -1,8 +1,7 @@
 import gulp from 'gulp';
 import server from 'browser-sync';
 import del from 'del';
-var sass = require('gulp-sass');
-var gulpCopy = require('gulp-copy');
+import sass from 'gulp-sass';
 
 const root = 'src/';
 const paths = {
@@ -44,6 +43,23 @@ gulp.task('copy', ['clean'], () => {
 	}).pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('scripts-vendors', ['clean'], () => {
+	return gulp.src([
+			paths.bower + 'bootstrap/dist/js/bootstrap.js',
+			paths.bower + 'jquery/dist/jquery.js',
+			paths.bower + 'angular/angular.js',
+			paths.bower + 'angular-ui-router/release/angular-ui-router.js'
+		])
+		.pipe(gulp.dest(paths.dist + '/js'));
+});
+
+gulp.task('scripts-bundle', ['clean', 'scripts-vendors'], () => {
+	return gulp.src([
+			'./src/app/**/*',
+		])
+		.pipe(gulp.dest(paths.dist + '/js/app'));
+});
+
 gulp.task('styles-3rd-party', ['clean'], () => {
 	return gulp.src(paths.bower + 'bootstrap/dist/css/bootstrap.min.css')
 		.pipe(gulp.dest(paths.dist + '/css'));
@@ -57,6 +73,8 @@ gulp.task('styles', ['styles-3rd-party'], () => {
 		.pipe(gulp.dest(paths.dist + '/css'));
 
 });
+
+
 gulp.task('serve', () => {
 	return server.init({
 		files: [`${paths.dist}/**`],
@@ -70,5 +88,7 @@ gulp.task('watch', function () {});
 
 gulp.task('default', [
 	'copy',
-	'styles'
+	'styles',
+	'scripts-vendors',
+	'scripts-bundle'
 ]);
