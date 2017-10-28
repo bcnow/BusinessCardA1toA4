@@ -32,7 +32,7 @@ const paths = {
 server.create();
 
 gulp.task('clean', () => {
-	return del([paths.dist + '**/*', ], {
+	return del.sync([paths.dist + '**/*', ], {
 		force: true
 	});
 });
@@ -43,7 +43,7 @@ gulp.task('copy', ['clean'], () => {
 	}).pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('scripts-vendors', ['clean'], () => {
+gulp.task('scripts-vendors', () => {
 	return gulp.src([
 			paths.bower + 'bootstrap/dist/js/bootstrap.js',
 			paths.bower + 'jquery/dist/jquery.js',
@@ -53,14 +53,14 @@ gulp.task('scripts-vendors', ['clean'], () => {
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('scripts-bundle', ['clean', 'scripts-vendors'], () => {
+gulp.task('scripts-bundle', ['scripts-vendors'], () => {
 	return gulp.src([
 			'./src/app/**/*',
 		])
 		.pipe(gulp.dest(paths.dist + '/js/app'));
 });
 
-gulp.task('styles-3rd-party', ['clean'], () => {
+gulp.task('styles-3rd-party', () => {
 	return gulp.src(paths.bower + 'bootstrap/dist/css/bootstrap.min.css')
 		.pipe(gulp.dest(paths.dist + '/css'));
 });
@@ -71,9 +71,7 @@ gulp.task('styles', ['styles-3rd-party'], () => {
 			outputStyle: 'compact'
 		}).on('error', sass.logError))
 		.pipe(gulp.dest(paths.dist + '/css'));
-
 });
-
 
 gulp.task('serve', () => {
 	return server.init({
@@ -84,7 +82,10 @@ gulp.task('serve', () => {
 		}
 	});
 });
-gulp.task('watch', function () {});
+gulp.task('watch', function () {
+	gulp.watch([paths.scripts, paths.templates], ['scripts-bundle']);
+	gulp.watch(paths.styles, ['styles']);
+});
 
 gulp.task('default', [
 	'copy',

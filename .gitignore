@@ -60,8 +60,12 @@ bower_components/
 # Generated #
 #################
 dist/
+dist
 
 # Sublime specific #
 ####################
 sftp-config*
 *.sublime-*
+dist/index.html
+dist/js/app/root.component.js
+dist/js/app/root.html
