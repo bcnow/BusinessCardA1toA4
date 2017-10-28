@@ -45,7 +45,12 @@ angular.module('root', ['ui.router'])
 		var helloState = {
 			name: 'hello',
 			url: '/hello',
-			template: '<h3>hello world!</h3>'
+			// template: '<h3>hello world!</h3>',
+			views: {
+				'topNav': {
+					template: '<ul class="nav navbar-nav">				<li>					<a href="#">About 2</a>				</li>				<li>					<a href="#">Services</a>				</li>			</ul>'
+				}
+			}
 		}
 
 		var aboutState = {
