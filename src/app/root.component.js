@@ -1,7 +1,7 @@
 function rootController() {
 	var ctrl = this;
 	ctrl.$onInit = function () {
-		console.log('root controller loaded 3337');
+		console.log('root controller loaded 33378');
 		ctrl.loaded = true;
 	}
 }

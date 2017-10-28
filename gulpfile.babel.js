@@ -87,6 +87,10 @@ gulp.task('watch', function () {
 	gulp.watch(paths.styles, ['styles']);
 });
 
+gulp.task('watch-n-serve', ['default', 'watch', 'serve'], () => {
+
+});
+
 gulp.task('default', [
 	'copy',
 	'styles',

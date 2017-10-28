@@ -1,5 +1,46 @@
 angular.module('root', ['ui.router'])
-	.config(function ($stateProvider) {
+	.config(function ($stateProvider, $urlRouterProvider) {
+
+		/////////////////////////////
+		// Redirects and Otherwise //
+		/////////////////////////////
+
+		// Use $urlRouterProvider to configure any redirects (when) and invalid urls (otherwise).
+		$urlRouterProvider
+
+			// The `when` method says if the url is ever the 1st param, then redirect to the 2nd param
+			// Here we are just setting up some convenience urls.
+			.when('/c?id', '/contacts/:id')
+			.when('/user/:id', '/contacts/:id')
+
+			// If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
+			.otherwise('/');
+
+
+		//////////////////////////
+		// State Configurations //
+		//////////////////////////
+		// Use $stateProvider to configure your states.
+		$stateProvider
+
+			//////////
+			// Home //
+			//////////
+
+			.state("home", {
+
+				// Use a url of "/" to set a state as the "index".
+				url: "/",
+
+				// Example of an inline template string. By default, templates
+				// will populate the ui-view within the parent state's template.
+				// For top level states, like this one, the parent template is
+				// the index.html file. So this template will be inserted into the
+				// ui-view within index.html.
+				template: '<root>hello inside</root>'
+
+			})
+
 		console.log('module root config');
 		var helloState = {
 			name: 'hello',
@@ -10,7 +51,12 @@ angular.module('root', ['ui.router'])
 		var aboutState = {
 			name: 'about',
 			url: '/about',
-			template: '<h3>Its the UI-Router hello world app!</h3>'
+			views: {
+				'footer': {
+					template: '<div>doe sist ss</div>'
+				}
+			}
+			// template: '<h3>Its the UI-Router hello world app!</h3>'
 		}
 
 		$stateProvider.state(helloState);
