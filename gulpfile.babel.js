@@ -79,7 +79,8 @@ gulp.task('serve', () => {
 		port: 4000,
 		server: {
 			baseDir: paths.dist
-		}
+		},
+		logLevel: 'debug'
 	});
 });
 gulp.task('watch', function () {
