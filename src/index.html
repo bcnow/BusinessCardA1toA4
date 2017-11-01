@@ -33,22 +33,21 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ui-view="topNav">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="#">About</a>
+						<a ui-sref="about" ui-sref-active="active">About</a>
 					</li>
 					<li>
-						<a href="#">Services</a>
+						<a ui-sref="hello" ui-sref-active="active">Hello</a>
 					</li>
 					<li>
-						<a href="#">Contact</a>
+						<a ui-sref="contact-us" ui-sref-active="active">Contact us</a>
 					</li>
 				</ul>
 			</div>
 
-			<div>
+			<!-- <div>
 				<a ui-sref="hello" ui-sref-active="active">Hello</a>
 				<a ui-sref="about" ui-sref-active="active">About</a>
-				<!-- <ui-view></ui-view> -->
-			</div>
+			</div> -->
 
 			<!-- /.navbar-collapse -->
 		</div>
@@ -103,6 +102,8 @@
 	<script src='js/app/root.component.js'></script>
 	<script src='js/app/about.component.js'></script>
 	<script src='js/app/app.component.js'></script>
+	<script src='js/app/hello.component.js'></script>
+	<script src='js/app/contact-us.component.js'></script>
 	<pre>
 		<!-- Here's some values to keep an eye on in the sample in order to understand $state and $stateParams -->
 		$state = {{$state.current.name}}
