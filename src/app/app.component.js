@@ -8,7 +8,7 @@ function appController() {
 
 angular.module('root').controller('appController', appController);
 
-var root = {
+var app = {
 	templateUrl: 'js/app/app.html',
 	controller: 'appController',
 	transclude: true

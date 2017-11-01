@@ -62,10 +62,10 @@ angular.module('root', ['ui.router'])
 					// 	template: '<h3>Its the UI-Router hello world app!</h3>'
 					// },
 					'footer': {
-						template: '<div>Dast ist from about</div>'
+						template: '<div>footer from about</div><about></about>'
 					},
 					'': {
-						template: 'content from about route '
+						template: '<about></about>'
 					}
 				}
 				//template: '<h3>Its the UI-Router hello world app!</h3>'
