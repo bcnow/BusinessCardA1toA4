@@ -1,0 +1,3 @@
+- using code first approach
+- using entity framework
+- also configured CardInitializer in web.config, to populate new database with sample data

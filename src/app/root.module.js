@@ -38,14 +38,15 @@ angular.module('root', ['ui.router'])
 				// the index.html file. So this template will be inserted into the
 				// ui-view within index.html.
 				views: {
-					'topLevel': {
-						template: '<root>hello inside</root>'
+					'': {
+						//template: 'some content from home route <div ui-view>dd</div>',
+						templateUrl: 'js/app/home.view.html'
 					}
 				}
 
 
 			}).state({
-				name: 'home.hello',
+				name: 'hello',
 				url: '/hello',
 				// template: '<h3>hello world!</h3>',
 				views: {
@@ -54,14 +55,17 @@ angular.module('root', ['ui.router'])
 					}
 				}
 			}).state({
-				name: 'home.about',
+				name: 'about',
 				url: '/about',
 				views: {
 					// 'topLevel': {
 					// 	template: '<h3>Its the UI-Router hello world app!</h3>'
 					// },
 					'footer': {
-						template: '<div>doe sist ss</div>'
+						template: '<div>Dast ist from about</div>'
+					},
+					'': {
+						template: 'content from about route '
 					}
 				}
 				//template: '<h3>Its the UI-Router hello world app!</h3>'
@@ -72,10 +76,18 @@ angular.module('root', ['ui.router'])
 
 		// let trace = window["angular-ui-router"].trace; // or "ui-router-ng2"
 		// trace.enable(); // Trace everything (very verbose)
-	}).run(function ($rootScope, $trace) {
+	}).run(function ($rootScope, $trace, $state, $stateParams) {
 
 		console.log('module root run');
 		$trace.enable("TRANSITION", "VIEWCONFIG");
+
+		// It's very handy to add references to $state and $stateParams to the $rootScope
+		// so that you can access them from any scope within your applications.For example,
+		// <li ng-class="{ active: $state.includes('contacts.list') }"> will set the <li>
+		// to active whenever 'contacts.list' or one of its decendents is active.
+		$rootScope.$state = $state;
+		$rootScope.$stateParams = $stateParams;
+
 		// $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 		// 	console.log('$stateChangeStart to ' + toState.to + '- fired when the transition begins. toState,toParams : \n', toState, toParams);
 		// });
