@@ -40,7 +40,7 @@ angular.module('root', ['ui.router'])
 				views: {
 					'': {
 						//template: 'some content from home route <div ui-view>dd</div>',
-						templateUrl: 'js/app/home.view.html'
+						templateUrl: 'app/home.view.html'
 					}
 				}
 

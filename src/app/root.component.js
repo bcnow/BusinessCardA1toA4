@@ -9,7 +9,7 @@ function rootController() {
 angular.module('root').controller('rootController', rootController);
 
 var root = {
-	templateUrl: 'js/app/root.html',
+	templateUrl: 'app/root.html',
 	controller: 'rootController',
 	transclude: true
 };

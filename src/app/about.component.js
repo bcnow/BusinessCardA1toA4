@@ -9,7 +9,7 @@ function aboutController() {
 angular.module('root').controller('aboutController', aboutController);
 
 var about = {
-	templateUrl: 'js/app/about.html',
+	templateUrl: 'app/about.html',
 	controller: 'aboutController'
 };
 angular.module('root').component('about', about);
