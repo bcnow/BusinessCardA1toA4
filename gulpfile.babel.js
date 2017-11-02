@@ -31,8 +31,6 @@ const paths = {
 	]
 };
 
-//var gulp = require('gulp')
-
 server.create();
 
 gulp.task('clean', () => {
@@ -49,11 +47,12 @@ gulp.task('copy', ['clean'], () => {
 
 gulp.task('scripts-vendors', () => {
 	return gulp.src([
-			paths.bower + 'bootstrap/dist/js/bootstrap.js',
 			paths.bower + 'jquery/dist/jquery.js',
+			paths.bower + 'bootstrap/dist/js/bootstrap.js',
 			paths.bower + 'angular/angular.js',
 			paths.bower + 'angular-ui-router/release/angular-ui-router.js'
 		])
+		.pipe(concat('vendors.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
@@ -66,15 +65,9 @@ gulp.task('scripts-cache', function () {
 });
 
 gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-cache'], () => {
-	// gulp.task('scripts', function () {
 	return gulp.src(['./src/app/root.module.js', './src/**/*.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));
-	// });
-	// return gulp.src([ 
-	// 		'./src/app/**/*',
-	// 	])
-	// 	.pipe(gulp.dest(paths.dist + '/js/app'));
 });
 
 gulp.task('styles-3rd-party', () => {
