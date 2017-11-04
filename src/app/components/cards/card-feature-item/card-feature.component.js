@@ -9,7 +9,9 @@ function cardFeatureController(cardsService) {
 		if (_.isNil(ctrl.cardItem)) {
 			ctrl.card = cardsService.getById(ctrl.cardId);
 		} else {
-
+			// ctrl.card = {				Name: 'vvv'			};
+			ctrl.card = ctrl.cardItem;
+			console.log('card ', ctrl.card);
 		}
 		// ctrl.filteredContacts = $filter('contactsFilter')(ctrl.contacts, ctrl.filter);
 	};
@@ -21,7 +23,7 @@ angular
 
 var component = {
 	bindings: {
-		cardItem: '@',
+		cardItem: '<',
 		cardId: '@',
 		test3: '@'
 	},

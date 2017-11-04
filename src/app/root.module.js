@@ -37,13 +37,25 @@ angular.module('root', ['ui.router', 'components.cards'])
 				// For top level states, like this one, the parent template is
 				// the index.html file. So this template will be inserted into the
 				// ui-view within index.html.
-				views: {
-					'': {
-						//template: 'some content from home route <div ui-view>dd</div>',
-						templateUrl: 'app/home.view.html'
-					}
-				}
 
+				// views: {
+				// 	'': {
+				// 		//template: 'some content from home route <div ui-view>dd</div>',
+				// 		templateUrl: 'app/home.view.html'
+
+				// 	}
+				// }
+				templateUrl: 'app/home.view.html',
+				resolve: {
+					cards: ['cardsService',
+						function (cardsService) {
+							return cardsService.getAll(3);
+						}
+					]
+				},
+				controller: ['$scope', 'cards', function ($scope, cards) {
+					$scope.cards = cards;
+				}]
 
 			}).state({
 				name: 'hello',
