@@ -1,4 +1,4 @@
-angular.module('root', ['ui.router'])
+angular.module('root', ['ui.router', 'components.cards'])
 	.config(function ($stateProvider, $urlRouterProvider) {
 
 		/////////////////////////////
@@ -79,8 +79,8 @@ angular.module('root', ['ui.router'])
 			})
 	}).run(function ($rootScope, $trace, $state, $stateParams) {
 
-		console.log('module root run');
-		$trace.enable("TRANSITION", "VIEWCONFIG");
+		// console.log('module root run');
+		// $trace.enable("TRANSITION", "VIEWCONFIG");
 
 		// It's very handy to add references to $state and $stateParams to the $rootScope
 		// so that you can access them from any scope within your applications.For example,
