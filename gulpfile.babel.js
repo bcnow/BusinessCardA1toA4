@@ -51,7 +51,9 @@ gulp.task('scripts-vendors', () => {
 			paths.bower + 'bootstrap/dist/js/bootstrap.js',
 			paths.bower + 'angular/angular.js',
 			paths.bower + 'angular-ui-router/release/angular-ui-router.js',
-			paths.bower + 'lodash/dist/lodash.js'
+			paths.bower + 'lodash/dist/lodash.js',
+			paths.bower + 'lokijs/src/lokijs.js',
+			paths.bower + 'lokijs/src/loki-angular.js'
 		])
 		.pipe(concat('vendors.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));

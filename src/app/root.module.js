@@ -1,4 +1,4 @@
-angular.module('root', ['ui.router', 'components.cards'])
+angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 	.config(function ($stateProvider, $urlRouterProvider) {
 
 		/////////////////////////////
@@ -49,11 +49,14 @@ angular.module('root', ['ui.router', 'components.cards'])
 				resolve: {
 					cards: ['cardsService',
 						function (cardsService) {
-							return cardsService.getAll(3);
+							return cardsService.getAll(3).then(function (result) {
+								return result;
+							});
 						}
 					]
 				},
 				controller: ['$scope', 'cards', function ($scope, cards) {
+					console.log('home state controller router: ', cards);
 					$scope.cards = cards;
 				}]
 
@@ -230,9 +233,6 @@ angular.module('root', ['ui.router', 'components.cards'])
 
 
 	}).run(function ($rootScope, $trace, $state, $stateParams) {
-
-		// console.log('module root run');
-		// $trace.enable("TRANSITION", "VIEWCONFIG");
 
 		// It's very handy to add references to $state and $stateParams to the $rootScope
 		// so that you can access them from any scope within your applications.For example,

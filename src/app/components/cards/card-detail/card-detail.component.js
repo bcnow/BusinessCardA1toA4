@@ -6,7 +6,9 @@ function cardDetailController(cardsService) {
 		if (_.isNil(ctrl.cardId)) {
 			throw 'card id or item must be set';
 		}
-		ctrl.card = cardsService.getById(ctrl.cardId);
+		cardsService.getById(ctrl.cardId).then(function (result) {
+			ctrl.card = result;
+		});
 
 		// if (_.isNil(ctrl.cardItem)) {
 		// 	ctrl.card = cardsService.getById(ctrl.cardId);
