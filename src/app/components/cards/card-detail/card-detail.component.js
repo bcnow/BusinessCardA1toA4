@@ -1,4 +1,4 @@
-function cardDetailController(cardsService) {
+function cardDetailController(cardsService, $state, helper) {
 	var ctrl = this;
 	ctrl.card = {};
 	ctrl.$onInit = function () {
@@ -9,15 +9,6 @@ function cardDetailController(cardsService) {
 		cardsService.getById(ctrl.cardId).then(function (result) {
 			ctrl.card = result;
 		});
-
-		// if (_.isNil(ctrl.cardItem)) {
-		// 	ctrl.card = cardsService.getById(ctrl.cardId);
-		// } else {
-		// 	// ctrl.card = {				Name: 'vvv'			};
-		// 	ctrl.card = ctrl.cardItem;
-		// 	console.log('card ', ctrl.card);
-		// }
-		// ctrl.filteredContacts = $filter('contactsFilter')(ctrl.contacts, ctrl.filter);
 	};
 
 }
@@ -27,9 +18,7 @@ angular
 
 var component = {
 	bindings: {
-		//cardItem: '<',
 		cardId: '@',
-		// test3: '@'
 	},
 	templateUrl: 'app/components/cards/card-detail/card-detail.html',
 	controller: 'cardDetailController'
