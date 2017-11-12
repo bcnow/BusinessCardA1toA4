@@ -76,7 +76,7 @@ function cardsService($q) {
 			});
 		},
 		post: function (card) {
-
+			return $q.when(children.update(card));
 		}
 	}
 }

@@ -4,15 +4,18 @@
 	<div class="form-group">
 		<label for="inputEmail3" class="col-sm-2 control-label">Name</label>
 		<div class="col-sm-10">
-			<label type="text" class="form-control-static" id="inputEmail3" placeholder="Email" data-ng-bind="$ctrl.card.Name"></label>
+			<label class="form-control-static" id="inputEmail3" placeholder="Email" data-ng-bind="$ctrl.card.Name"></label>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="inputPassword3" class="col-sm-2 control-label">Address</label>
 		<div class="col-sm-10">
-			<label type="text" class="form-control-static" id="inputPassword3" placeholder="Password" data-ng-bind="$ctrl.card.Address"></label>
+			<label class="form-control-static" id="inputPassword3" placeholder="Password" data-ng-bind="$ctrl.card.Address"></label>
 		</div>
 	</div>
+
+	<a ui-sref="cards.edit({cardId:45})" class="btn btn-info" role="button">Edit</a>
+
 </form>
 
 

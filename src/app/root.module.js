@@ -228,7 +228,22 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 					// 	]
 					// }
 				}
-			})
+			}).state('cards.edit', {
+				url: '/{cardId:[0-9]{1,4}}/edit',
+				resolve: {
+					cardId: ['$stateParams', function ($stateParam) {
+						return $stateParam.cardId;
+					}]
+				},
+				views: {
+					// So this one is targeting the unnamed view within the parent state's template.
+					'': {
+						component: 'cardEdit'
+					}
+				}
+			});
+
+
 
 
 

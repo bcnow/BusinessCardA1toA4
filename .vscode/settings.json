@@ -1,5 +1,7 @@
 {
-    "editor.formatOnSave": true,
-    "editor.detectIndentation": false,
-    "editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"todohighlight.isEnable": true,
+	"todohighlight.isCaseSensitive": false
 }
