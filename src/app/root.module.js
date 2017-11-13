@@ -156,7 +156,7 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 				// template will be inserted into the ui-view within this state's
 				// parent's template; so the ui-view within contacts.html. This is the
 				// most important thing to remember about templates.
-				templateUrl: 'app/contacts/contacts.list.html'
+				component: 'cardsList'
 			})
 
 			///////////////////////
@@ -250,7 +250,7 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 	}).run(function ($rootScope, $trace, $state, $stateParams, $uiRouter, $transitions) {
 		$transitions.onError({}, transition => {
 			// $state.go('error', { error: transition.error() });
-			console.log('Default error handler fired! 2');
+			console.log('Default error handler fired! 2 ', transition._error.detail);
 		});
 		$state.defaultErrorHandler(function () {
 			console.log('Default error handler fired!');

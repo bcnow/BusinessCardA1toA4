@@ -1,1 +1,6 @@
-some cards list
+<button class="btn btn-default" data-ng-click="$ctrl.add()">Add</button>
+<div data-ng-repeat="card in $ctrl.cards">
+	<label data-ng-bind="card.Name"></label>
+	<a ui-sref="cards.detail.edit({cardId:card.Id})" class="btn btn-info" role="button">Edit</a>
+
+</div>
