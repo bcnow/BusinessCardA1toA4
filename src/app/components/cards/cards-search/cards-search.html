@@ -1,0 +1,28 @@
+<h2>Search</h2>
+<form>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" class="form-control" id="name" placeholder="Enter name" data-ng-model='$ctrl.searchCriteria.name'>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label for="workplace">Workplace</label>
+				<input type="text" class="form-control" id="workplace" placeholder="Enter workplace" data-ng-model='$ctrl.searchCriteria.workplace'>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label for="address">Address</label>
+				<input type="address" class="form-control" id="address" placeholder="Enter address" data-ng-model='$ctrl.searchCriteria.address'>
+			</div>
+		</div>
+	</div>
+	<button type="submit" data-ng-click='$ctrl.search()'>Search</button>
+</form>
+<div data-ng-repeat="card in $ctrl.cards">
+	<label data-ng-bind="card.Name"></label>
+	<a ui-sref="cards.detail.edit({cardId:card.Id})" class="btn btn-info" role="button">Edit</a>
+</div>

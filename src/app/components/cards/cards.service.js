@@ -75,6 +75,23 @@ function cardsService($q) {
 				return result[0];
 			});
 		},
+		search: function (seearchCriteria) {
+			return readyPromise.promise.then(function () {
+				let result = children.find({
+					'Name': {
+						'$contains': seearchCriteria.name ? seearchCriteria.name : ''
+					},
+					'Workplace': {
+						'$contains': seearchCriteria.workplace ? seearchCriteria.workplace : ''
+					},
+					'Address': {
+						'$contains': seearchCriteria.address ? seearchCriteria.address : ''
+					}
+				});
+				console.log('search ', seearchCriteria, ' ', result);
+				return result;
+			});
+		},
 		post: function (card) {
 
 			function biggestId(obj1, obj2) {
