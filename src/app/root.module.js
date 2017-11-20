@@ -241,6 +241,19 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 						component: 'cardEdit'
 					}
 				}
+			}).state('cards.add', {
+				url: '/add',
+				// resolve: {
+				// cardId: ['$stateParams', function ($stateParam) {
+				// 	return $stateParam.cardId;
+				// }]
+				// },
+				views: {
+					// So this one is targeting the unnamed view within the parent state's template.
+					'': {
+						component: 'cardNew'
+					}
+				}
 			});
 
 

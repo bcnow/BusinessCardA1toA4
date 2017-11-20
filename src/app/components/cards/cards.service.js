@@ -76,7 +76,25 @@ function cardsService($q) {
 			});
 		},
 		post: function (card) {
-			return $q.when(children.update(card));
+
+			function biggestId(obj1, obj2) {
+				if (obj1.Id < obj2.Id) return 1;
+				if (obj1.Id > obj2.Id) return -1;
+				return 0;
+			}
+
+			if (_.isNil(card.Id)) {
+				// find biggest id
+				var list = children.chain()
+					.sort(biggestId)
+					.limit(1)
+					.data();
+				var currentId = list[0].Id;
+				card.Id = currentId + 1;
+				return $q.when(children.insert(card));
+			} else {
+				return $q.when(children.update(card));
+			}
 		}
 	}
 }
