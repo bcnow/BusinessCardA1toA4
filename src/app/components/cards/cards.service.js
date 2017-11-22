@@ -23,18 +23,21 @@ function cardsService($q) {
 				Id: 45,
 				Name: 'Andrew Berrimor',
 				Workplace: 'GoToCarting',
+				Email: 'andres@boo.com',
 				Address: 'Brighton, Main street 15'
 			})
 			children.insert({
 				Id: 55,
 				Name: 'Tom Berrimor',
 				Workplace: 'Consulting',
+				Email: 'tom@boo.com',
 				Address: 'Brighton, Yellow sttret 100'
 			})
 			children.insert({
 				Id: 90,
 				Name: 'Inga Berrimor',
 				Workplace: 'Agency',
+				Email: 'Inga@boo.com',
 				Address: 'London, Green sttret 100'
 			})
 		}

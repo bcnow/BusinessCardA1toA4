@@ -1,6 +1,42 @@
-<a class="btn btn-default" ui-sref="cards.add">Add</a>
-<a class="btn btn-default" ui-sref="cards.search">Search</a>
-<div data-ng-repeat="card in $ctrl.cards">
+<div class="row">
+	<div class="col-sm-6">
+		<a class="btn btn-default" ui-sref="cards.add">Add</a>
+		<a class="btn btn-default" ui-sref="cards.search">Search</a>
+	</div>
+</div>
+<div>&nbsp;</div>
+<table class="table table-striped">
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Last name
+		</th>
+		<th>
+			Workplace
+		</th>
+		<th>
+			Email
+		</th>
+		<th></th>
+		<th></th>
+	</tr>
+	<tr data-ng-repeat="card in $ctrl.cards">
+		<td>{{card.Name}}</td>
+		<td>{{card.Name}}</td>
+		<td>{{card.Workplace}}</td>
+		<td>{{card.Email}}</td>
+		<td>
+			<a ui-sref="cards.detail({cardId:card.Id})" class="btn btn-info" role="button">View</a>
+		</td>
+		<td>
+			Delete </td>
+	</tr>
+</table>
+<!-- <div data-ng-repeat="card in $ctrl.cards">
+
 	<label data-ng-bind="card.Name"></label>
 	<a ui-sref="cards.detail.edit({cardId:card.Id})" class="btn btn-info" role="button">Edit</a>
-</div>
+	<a ui-sref="cards.detail.edit2({cardId:card.Id})" class="btn btn-info" role="button">Edit</a>
+</div> -->

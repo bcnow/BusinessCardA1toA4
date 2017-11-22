@@ -7,6 +7,7 @@ function routeLinkCheck() {
 					$element.prop("disabled", true);
 					$element.attr('disabled', 'disabled');
 				}
+				// todo - check route permission
 			};
 		}
 	};

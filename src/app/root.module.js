@@ -227,7 +227,9 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 					'hint@': {
 						template: 'This is contacts.detail populating the "hint" ui-view'
 					},
-
+					'subheading': {
+						template: 'Details'
+					}
 					// This one is targeting the ui-view="menuTip" within the parent state's template.
 					// 'menuTip': {
 					// 	// templateProvider is the final method for supplying a template.
@@ -251,8 +253,11 @@ angular.module('root', ['ui.router', 'lokijs', 'components.cards'])
 				},
 				views: {
 					// So this one is targeting the unnamed view within the parent state's template.
-					'': {
+					'@cards': {
 						component: 'cardEdit'
+					},
+					'subheading@cards': {
+						template: 'Edit'
 					}
 				}
 			}).state('cards.add', {

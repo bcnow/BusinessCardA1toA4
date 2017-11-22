@@ -20,9 +20,46 @@
 			</div>
 		</div>
 	</div>
-	<button type="submit" data-ng-click='$ctrl.search()'>Search</button>
+	<div class="row">
+		<div class="col-sm-4">
+			<label for="exactSearch">Exact search</label>
+			<input id="exactSearch" type="checkbox" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<button type="submit" class="btn btn-primary" data-ng-click='$ctrl.search()'>Search</button>
+		</div>
+	</div>
 </form>
-<div data-ng-repeat="card in $ctrl.cards">
+
+<table class="table table-striped" data-ng-if="$ctrl.cards.length > 0">
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Last name
+		</th>
+		<th>
+			Workplace
+		</th>
+		<th>
+			Email
+		</th>
+		<th></th>
+	</tr>
+	<tr data-ng-repeat="card in $ctrl.cards">
+		<td>{{card.Name}}</td>
+		<td>{{card.Name}}</td>
+		<td>{{card.Workplace}}</td>
+		<td>{{card.Email}}</td>
+		<td>
+			<a ui-sref="cards.detail({cardId:card.Id})" class="btn btn-info" role="button">View</a>
+		</td>
+	</tr>
+</table>
+<!-- <div data-ng-repeat="card in $ctrl.cards">
 	<label data-ng-bind="card.Name"></label>
 	<a ui-sref="cards.detail.edit({cardId:card.Id})" class="btn btn-info" role="button">Edit</a>
-</div>
+</div> -->
