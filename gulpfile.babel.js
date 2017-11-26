@@ -6,6 +6,8 @@ import sass from 'gulp-sass';
 import concat from 'gulp-concat';
 import templateCache from 'gulp-angular-templatecache';
 import babel from 'gulp-babel';
+import ts from 'gulp-typescript';
+var tsProject = ts.createProject('tsconfig.json');
 
 const root = 'src/';
 const mainAngularModuleName = 'root';
@@ -74,10 +76,20 @@ gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-template-cache'], () =>
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('babel', function () {
+gulp.task('babel', function () { // not used anywhere
 	return gulp.src('./src/es6/**/*.js')
 		.pipe(babel())
 		.pipe(gulp.dest('dist2'));
+});
+
+gulp.task('ts', function () {
+	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
+		.pipe(tsProject());
+
+	return tsResult.js.pipe(gulp.dest('dist2'));
+	// return gulp.src('./src/es6/**/*.js')
+	// 	.pipe(babel())
+	// 	.pipe(gulp.dest('dist2'));
 });
 
 

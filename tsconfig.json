@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		//"module": "amd",
+		// "noImplicitAny": true,
+		"removeComments": true,
+		//"preserveConstEnums": true,
+		"outFile": "tsc.js",
+		"sourceMap": false
+	},
+	"include": [
+		"src/**/*"
+	],
+	"exclude": [
+		"node_modules",
+		"bower_components",
+		"**/*.spec.ts",
+		"**/*.test.ts",
+	]
+}
