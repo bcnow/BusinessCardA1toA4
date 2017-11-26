@@ -3,8 +3,9 @@ import server from 'browser-sync';
 import del from 'del';
 import sass from 'gulp-sass';
 // import concat from 'gulp-concat';
-var concat = require('gulp-concat');
-var templateCache = require('gulp-angular-templatecache');
+import concat from 'gulp-concat';
+import templateCache from 'gulp-angular-templatecache';
+import babel from 'gulp-babel';
 
 const root = 'src/';
 const mainAngularModuleName = 'root';
@@ -59,7 +60,7 @@ gulp.task('scripts-vendors', () => {
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('scripts-cache', function () {
+gulp.task('scripts-template-cache', function () {
 	return gulp.src('src/**/*.html')
 		.pipe(templateCache({
 			module: mainAngularModuleName
@@ -67,11 +68,18 @@ gulp.task('scripts-cache', function () {
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-cache'], () => {
+gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-template-cache'], () => {
 	return gulp.src(['./src/app/root.module.js', './src/**/*.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
+
+gulp.task('babel', function () {
+	return gulp.src('./src/es6/**/*.js')
+		.pipe(babel())
+		.pipe(gulp.dest('dist2'));
+});
+
 
 gulp.task('styles-3rd-party', () => {
 	return gulp.src(paths.bower + 'bootstrap/dist/css/bootstrap.min.css')
@@ -100,6 +108,7 @@ gulp.task('watch', function () {
 	gulp.watch([paths.scripts, paths.templates], ['scripts-bundle']);
 	gulp.watch(paths.styles, ['styles']);
 });
+
 
 gulp.task('watch-n-serve', ['default', 'watch', 'serve'], () => {
 

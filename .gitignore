@@ -61,6 +61,8 @@ bower_components/
 #################
 dist/
 dist
+dist2/
+dist2
 
 # Sublime specific #
 ####################

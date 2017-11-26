@@ -41,7 +41,6 @@ function cardsService($q) {
 				Address: 'London, Green sttret 100'
 			})
 		}
-		readyPromise.resolve();
 		runProgramLogic();
 		console.log('initialize end');
 	}
@@ -49,6 +48,7 @@ function cardsService($q) {
 	function runProgramLogic() {
 		var entryCount = db.getCollection("children").count();
 		console.log("number of entries in database : " + entryCount);
+		readyPromise.resolve();
 	}
 
 	// }
