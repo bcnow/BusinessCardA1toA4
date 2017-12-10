@@ -1,8 +1,8 @@
-import _ from 'lodash'
+//import _ from 'lodash'
 
 export default class myFirstClass {
 	calculate(arg) {
-		console.log(_.isArray(arg));
+		//console.log(_.isArray(arg));
 		return arg + 33;
 	}
 }

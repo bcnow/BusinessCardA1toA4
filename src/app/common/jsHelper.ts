@@ -1,4 +1,4 @@
-namespace Common {
+namespace Common.White {
 
 	export class MyTsClass {
 		getArea(width: number): number {
@@ -12,7 +12,7 @@ namespace Common {
 namespace Best {
 	class Bu {
 		constructor() {
-			let g = new Common.MyTsClass();
+			let g = new Common.White.MyTsClass();
 			g.getArea(3);
 		}
 	}

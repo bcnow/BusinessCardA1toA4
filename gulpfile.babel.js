@@ -71,16 +71,27 @@ gulp.task('scripts-template-cache', function () {
 });
 
 gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-template-cache'], () => {
-	return gulp.src(['./src/app/root.module.js', './src/**/*.js'])
+	return gulp.src(['./src/app/root.module.js', './src/**/*.js', '!./src/es6/**/*.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
+//----------------
+// ekperiment - ES 6
+//----------------
 
 gulp.task('babel', function () { // not used anywhere
 	return gulp.src('./src/es6/**/*.js')
 		.pipe(babel())
-		.pipe(gulp.dest('dist2'));
+		.pipe(gulp.dest('dist-es6-gulp'));
 });
+
+//----------------
+// ekperiment - end
+//----------------
+
+//----------------
+// ekperiment - Typescript
+//----------------
 
 gulp.task('ts', function () {
 	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
@@ -91,6 +102,10 @@ gulp.task('ts', function () {
 	// 	.pipe(babel())
 	// 	.pipe(gulp.dest('dist2'));
 });
+
+//----------------
+// ekperiment - end
+//----------------
 
 
 gulp.task('styles-3rd-party', () => {

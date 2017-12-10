@@ -1,5 +1,5 @@
 import myFirstClass from './first-module';
-import angular from 'angular';
+//import angular from 'angular';
 
 function test() {
 	// console.log('blabal')
