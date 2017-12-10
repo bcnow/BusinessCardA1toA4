@@ -16,6 +16,12 @@ module.exports = {
 			}
 		}]
 	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'vendor',
+			filename: "vendor.bundle.js"
+		})
+	],
 	stats: {
 		colors: true
 	},

@@ -1,5 +1,6 @@
 import myFirstClass from './first-module';
 //import angular from 'angular';
+import angular from '../../bower_components/angular/angular.js';
 
 function test() {
 	// console.log('blabal')
