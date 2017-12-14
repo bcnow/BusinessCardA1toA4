@@ -1,5 +1,7 @@
-export class MySort {
-	getSortName() {
-		return 'blabala';
+module mine {
+	export class MySort {
+		getSortName() {
+			return 'blabala';
+		}
 	}
 }

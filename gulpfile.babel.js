@@ -7,12 +7,13 @@ import concat from 'gulp-concat';
 import templateCache from 'gulp-angular-templatecache';
 import babel from 'gulp-babel';
 import ts from 'gulp-typescript';
-var tsProject = ts.createProject('tsconfig.json');
 
+const tsProject = ts.createProject('tsconfig.json');
 const root = 'src/';
 const mainAngularModuleName = 'root';
 const paths = {
 	dist: './dist/',
+	distJs: './dist/' + 'js',
 	bower: './bower_components/',
 	distDocs: './docs/build',
 	docs: './docs/app/*.js',
@@ -48,7 +49,7 @@ gulp.task('copy', ['clean'], () => {
 	}).pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('scripts-vendors', () => {
+gulp.task('scripts:vendors', () => {
 	return gulp.src([
 			paths.bower + 'jquery/dist/jquery.js',
 			paths.bower + 'bootstrap/dist/js/bootstrap.js',
@@ -62,7 +63,7 @@ gulp.task('scripts-vendors', () => {
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('scripts-template-cache', function () {
+gulp.task('scripts:template-cache', function () {
 	return gulp.src('src/**/*.html')
 		.pipe(templateCache({
 			module: mainAngularModuleName
@@ -70,7 +71,21 @@ gulp.task('scripts-template-cache', function () {
 		.pipe(gulp.dest(paths.dist + '/js'));
 });
 
-gulp.task('scripts-bundle', ['scripts-vendors', 'scripts-template-cache'], () => {
+gulp.task('scripts:bundle-typescript', function () {
+	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
+		.pipe(tsProject());
+
+	return tsResult.js.pipe(gulp.dest(paths.distJs));
+	// return gulp.src('src/**/*.ts')
+	// 	.pipe(templateCache({
+	// 		module: mainAngularModuleName
+	// 	}))
+	// 	.pipe(gulp.dest(paths.dist + '/js'));
+});
+gulp.task('scripts:all', ['scripts:vendors', 'scripts:template-cache', 'scripts:bundle-typescript', 'scripts:bundle'], () => {
+
+});
+gulp.task('scripts:bundle', () => { // ['scripts:vendors', 'scripts:template-cache']
 	return gulp.src(['./src/app/root.module.js', './src/**/*.js', '!./src/es6/**/*.js'])
 		.pipe(concat('bundle.js'))
 		.pipe(gulp.dest(paths.dist + '/js'));
@@ -132,7 +147,7 @@ gulp.task('serve', () => {
 	});
 });
 gulp.task('watch', function () {
-	gulp.watch([paths.scripts, paths.templates], ['scripts-bundle']);
+	gulp.watch([paths.scripts, paths.templates], ['scripts:all']);
 	gulp.watch(paths.styles, ['styles']);
 });
 
@@ -144,6 +159,5 @@ gulp.task('watch-n-serve', ['default', 'watch', 'serve'], () => {
 gulp.task('default', [
 	'copy',
 	'styles',
-	'scripts-vendors',
-	'scripts-bundle'
+	'scripts:all'
 ]);

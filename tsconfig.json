@@ -1,10 +1,10 @@
 {
 	"compilerOptions": {
 		//"module": "amd",
-		// "noImplicitAny": true,
+		// "noImplicitAny": true,		
 		"removeComments": true,
 		//"preserveConstEnums": true,
-		"outFile": "tsc.js",
+		"outFile": "bundle.typescript.js",
 		"sourceMap": false
 	},
 	"include": [
