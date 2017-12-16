@@ -17,7 +17,7 @@ const paths = {
 	bower: './bower_components/',
 	distDocs: './docs/build',
 	docs: './docs/app/*.js',
-	scripts: [`${root}/app/**/*.js`, `!${root}/app/**/*.spec.js`],
+	scripts: [`${root}/app/**/*.ts`],
 	tests: `${root}/app/**/*.spec.js`,
 	styles: `${root}/sass/*.scss`,
 	templates: `${root}/app/**/*.html`,
@@ -82,14 +82,14 @@ gulp.task('scripts:bundle-typescript', function () {
 	// 	}))
 	// 	.pipe(gulp.dest(paths.dist + '/js'));
 });
-gulp.task('scripts:all', ['scripts:vendors', 'scripts:template-cache', 'scripts:bundle-typescript', 'scripts:bundle'], () => {
+gulp.task('scripts:all', ['scripts:vendors', 'scripts:template-cache', 'scripts:bundle-typescript'], () => {
 
 });
-gulp.task('scripts:bundle', () => { // ['scripts:vendors', 'scripts:template-cache']
-	return gulp.src(['./src/app/root.module.js', './src/**/*.js', '!./src/es6/**/*.js'])
-		.pipe(concat('bundle.js'))
-		.pipe(gulp.dest(paths.dist + '/js'));
-});
+// gulp.task('scripts:bundle', () => { // ['scripts:vendors', 'scripts:template-cache']
+// 	return gulp.src(['./src/app/root.module.js', './src/**/*.js', '!./src/es6/**/*.js'])
+// 		.pipe(concat('bundle.js'))
+// 		.pipe(gulp.dest(paths.dist + '/js'));
+// });
 //----------------
 // ekperiment - ES 6
 //----------------

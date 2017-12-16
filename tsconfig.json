@@ -1,17 +1,20 @@
 {
 	"compilerOptions": {
-		//"module": "amd",
+		//"module": "system",
+		"allowJs": true,
 		// "noImplicitAny": true,		
 		"removeComments": true,
 		//"preserveConstEnums": true,
 		"outFile": "bundle.typescript.js",
-		"sourceMap": false
+		"sourceMap": false,
+		"target": "es5"
 	},
 	"include": [
-		"src/**/*"
+		"src/**/*",
+		"node_modules/**/*.d.ts"
 	],
 	"exclude": [
-		"node_modules",
+		"node_modules_xxx",
 		"bower_components",
 		"**/*.spec.ts",
 		"**/*.test.ts"
