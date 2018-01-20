@@ -3,10 +3,11 @@ module an {
 		return {
 			restrict: 'E',
 			compile: function ($element) {
-				return function ($scope, $element, $attrs, $ctrl) {
+				return function ($scope: ng.IScope, $element, $attrs: ng.IAttributes, $ctrl) {
 					if (_.isNil($element.attr("href")) && _.isNil($element.attr("ui-sref")) === false) {
 						$element.prop("disabled", true);
 						$element.attr('disabled', 'disabled');
+						$element.attr('title', 'path does not exist: ' + $element.attr("ui-sref"));
 					}
 					// todo - check route permission
 				};

@@ -7,6 +7,7 @@ import concat from 'gulp-concat';
 import templateCache from 'gulp-angular-templatecache';
 import babel from 'gulp-babel';
 import ts from 'gulp-typescript';
+import webpack from 'webpack-stream';
 
 const tsProject = ts.createProject('tsconfig.json');
 const root = 'src/';
@@ -74,24 +75,32 @@ gulp.task('scripts:template-cache', function () {
 gulp.task('scripts:bundle-typescript', function () {
 	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
 		.pipe(tsProject());
-
 	return tsResult.js.pipe(gulp.dest(paths.distJs));
-	// return gulp.src('src/**/*.ts')
-	// 	.pipe(templateCache({
-	// 		module: mainAngularModuleName
-	// 	}))
-	// 	.pipe(gulp.dest(paths.dist + '/js'));
 });
+
 gulp.task('scripts:all', ['scripts:vendors', 'scripts:template-cache', 'scripts:bundle-typescript'], () => {
 
 });
-// gulp.task('scripts:bundle', () => { // ['scripts:vendors', 'scripts:template-cache']
-// 	return gulp.src(['./src/app/root.module.js', './src/**/*.js', '!./src/es6/**/*.js'])
-// 		.pipe(concat('bundle.js'))
-// 		.pipe(gulp.dest(paths.dist + '/js'));
-// });
 //----------------
-// ekperiment - ES 6
+// ekperiment - Webpack
+//----------------
+gulp.task('webpack:es6', function () {
+	gulp.src('src/es6/main.js2')
+		.pipe(webpack(require('./webpack.es6.config.js')))
+		.pipe(gulp.dest('dist-es6-webpack/'));
+});
+
+gulp.task('webpack:ts', function () {
+	gulp.src('src/es6/main.js2')
+		.pipe(webpack(require('./webpack.ts.config.js')))
+		.pipe(gulp.dest('dist-ts-webpack/'));
+});
+//  ------------
+// ekperiment - Webpack ES 6 - END
+//----------------
+
+//----------------
+// ekperiment - ES 6 - babel
 //----------------
 
 gulp.task('babel', function () { // not used anywhere
@@ -108,15 +117,15 @@ gulp.task('babel', function () { // not used anywhere
 // ekperiment - Typescript
 //----------------
 
-gulp.task('ts', function () {
-	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
-		.pipe(tsProject());
+// gulp.task('ts', function () {
+// 	var tsResult = gulp.src('./src/**/*.ts') // or tsProject.src()
+// 		.pipe(tsProject());
 
-	return tsResult.js.pipe(gulp.dest('dist2'));
-	// return gulp.src('./src/es6/**/*.js')
-	// 	.pipe(babel())
-	// 	.pipe(gulp.dest('dist2'));
-});
+// 	return tsResult.js.pipe(gulp.dest('dist2'));
+// 	// return gulp.src('./src/es6/**/*.js')
+// 	// 	.pipe(babel())
+// 	// 	.pipe(gulp.dest('dist2'));
+// });
 
 //----------------
 // ekperiment - end

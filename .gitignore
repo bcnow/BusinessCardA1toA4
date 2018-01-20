@@ -64,6 +64,7 @@ dist
 dist2/
 dist2
 dist-es6-webpack/
+dist-ts-webpack/
 dist-es6-gulp/
 dist-es6-webpack
 dist-es6-gulp

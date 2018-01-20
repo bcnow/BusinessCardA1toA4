@@ -5,9 +5,9 @@
 		// "noImplicitAny": true,		
 		"removeComments": true,
 		//"preserveConstEnums": true,
-		"outFile": "bundle.typescript.js",
-		"sourceMap": false,
-		"target": "es5"
+		//"outFile": "bundle.typescript.js",
+		"sourceMap": true,
+		//"target": "es5"
 	},
 	"include": [
 		"src/**/*",

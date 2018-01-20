@@ -2,19 +2,23 @@ var path = require('path');
 var webpack = require('webpack');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-	entry: './src/es6/main.js',
+	entry: './src/typescript-example/main.ts',
 	output: {
-		path: path.resolve(__dirname, 'dist-es6-webpack'),
-		filename: 'main.bundle.js'
+		path: path.resolve(__dirname, 'dist-ts-webpack'),
+		filename: 'ts.bundle.js'
+	},
+	resolve: {
+		// Add `.ts` and `.tsx` as a resolvable extension.
+		extensions: ['.ts', '.tsx', '.js']
 	},
 	module: {
-		loaders: [{
-			test: /\.js$/,
-			loader: 'babel-loader',
-			query: {
-				presets: ['es2015']
+		rules: [
+			// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+			{
+				test: /\.tsx?$/,
+				loader: 'ts-loader'
 			}
-		}]
+		]
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
@@ -25,13 +29,13 @@ module.exports = {
 				var context = module.context;
 				return context && (context.indexOf('node_modules') >= 0 || context.indexOf('bower_components') >= 0);
 			},
-		}),
-		new BundleAnalyzerPlugin({
-			analyzerMode: 'static'
 		})
+		// new BundleAnalyzerPlugin({
+		// 	analyzerMode: 'static'
+		// })
 	],
 	stats: {
 		colors: true
 	},
-	devtool: 'source-map'
+	devtool: 'inline-source-map'
 };
